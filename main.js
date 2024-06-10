@@ -15,11 +15,21 @@ const cubeMesh = new THREE.Mesh(
 scene.add(cubeMesh)
 
 // initialize the camera
-const camera = new THREE.PerspectiveCamera(
-  35, 
-  window.innerWidth / window.innerHeight,
-  0.1,
-  100)
+// const camera = new THREE.PerspectiveCamera(
+//   35, 
+//   window.innerWidth / window.innerHeight,
+//   0.1,
+//   100)
+
+const camera = new THREE.OrthographicCamera(
+	-1,
+	1,
+	1,
+	-1,
+	0.1,
+	200
+)
+
 camera.position.z = 5
 
 // initialize the renderer
@@ -38,11 +48,10 @@ controls.enableDamping = true;
 controls.autoRotate = true;
 
 
-const renderloop = () => {
+function renderloop() {
 
 	// required if controls.enableDamping or controls.autoRotate are set to true
-	// controls.update();
-
+	// controls.update(); should always go first
 	controls.update();
 
 	renderer.render(scene, camera);
