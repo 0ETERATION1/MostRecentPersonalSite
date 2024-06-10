@@ -6,7 +6,7 @@ const scene = new THREE.Scene()
 
 // add objects to the scene
 const cubeGeometry = new THREE.BoxGeometry(1,1,1)
-const cubeMaterial = new THREE.MeshBasicMaterial({color: "green"})
+const cubeMaterial = new THREE.MeshBasicMaterial({color: "red"})
 
 const cubeMesh = new THREE.Mesh(
   cubeGeometry,
@@ -34,14 +34,19 @@ renderer.setSize(window.innerWidth, window.innerHeight)
 
 // orbit controls
 const controls = new OrbitControls(camera, canvas)
+controls.enableDamping = true;
+controls.autoRotate = true;
+
 
 const renderloop = () => {
 
 	// required if controls.enableDamping or controls.autoRotate are set to true
 	// controls.update();
 
-	renderer.render(scene, camera)
-	window.requestAnimationFrame(renderloop) 
+	controls.update();
+
+	renderer.render(scene, camera);
+	window.requestAnimationFrame(renderloop);
 
 
 
