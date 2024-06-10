@@ -1,45 +1,52 @@
 import * as THREE from 'three';
+import { OrbitControls } from 'three/addons/controls/OrbitControls.js';
 
-console.log("CHECK!")
+// initialize the scene
+const scene = new THREE.Scene()
 
-// this holds all of our three.js objects
-const scene = new THREE.Scene();
+// add objects to the scene
+const cubeGeometry = new THREE.BoxGeometry(1,1,1)
+const cubeMaterial = new THREE.MeshBasicMaterial({color: "green"})
 
-//const renderer = new THREE.WebGLRenderer();
-// renderer.setSize( window.innerWidth, window.innerHeight );
-// renderer.setAnimationLoop( animate );
+const cubeMesh = new THREE.Mesh(
+  cubeGeometry,
+  cubeMaterial
+)
+scene.add(cubeMesh)
 
-//document.body.appendChild( renderer.domElement );
+// initialize the camera
+const camera = new THREE.PerspectiveCamera(
+  35, 
+  window.innerWidth / window.innerHeight,
+  0.1,
+  100)
+camera.position.z = 5
 
+// initialize the renderer
+const canvas = document.querySelector('canvas.threejs')
+const renderer = new THREE.WebGLRenderer({
+  canvas: canvas
+})
 
-const geometry = new THREE.BoxGeometry( 1, 1, 1 );
-//const geometry1 = new THREE.BoxGeometry( 2, 2, 2 );
-
-const material = new THREE.MeshBasicMaterial( { color: "red" } );
-//const material1 = new THREE.MeshBasicMaterial( { color: "yellow" } );
-
-const cube1 = new THREE.Mesh( geometry, material );
-//const cube2 = new THREE.Mesh( geometry1, material1 );
-
-scene.add( cube1 );
-//scene.add( cube2 );
-
-// creating a camera that will point at the scene
-const camera = new THREE.PerspectiveCamera( 75, window.innerWidth / window.innerHeight, 0.1, 30);
-camera.position.z = 5;
-
-const canvas = document.querySelector('canvas.threejs');
-console.log(canvas);
-const renderer = new THREE.WebGLRenderer({canvas})
-renderer.setSize(window.innerWidth, window.innerHeight);
-renderer.render(scene,camera);
+// need to set size before the render loop
+renderer.setSize(window.innerWidth, window.innerHeight)
 
 
-function animate() {
+// orbit controls
+const controls = new OrbitControls(camera, canvas)
 
-	cube1.rotation.x += 0.01;
-	cube1.rotation.y += 0.01;
+const renderloop = () => {
 
-	renderer.render( scene, camera );
+	// required if controls.enableDamping or controls.autoRotate are set to true
+	// controls.update();
+
+	renderer.render(scene, camera)
+	window.requestAnimationFrame(renderloop) 
+
+
 
 }
+
+renderloop()
+
+//console.log(window.requestAnimationFrame);
