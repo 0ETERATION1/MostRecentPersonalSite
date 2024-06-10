@@ -15,22 +15,22 @@ const cubeMesh = new THREE.Mesh(
 scene.add(cubeMesh)
 
 // initialize the camera
-// const camera = new THREE.PerspectiveCamera(
-//   35, 
-//   window.innerWidth / window.innerHeight,
-//   0.1,
-//   100)
+const camera = new THREE.PerspectiveCamera(
+  35, 
+  window.innerWidth / window.innerHeight,
+  0.1,
+  100)
 
 const aspectRatio = window.innerWidth / window.innerHeight;
 
-const camera = new THREE.OrthographicCamera(
-	-1 * aspectRatio,
-	1 * aspectRatio,
-	1,
-	-1,
-	0.1,
-	200
-)
+// const camera = new THREE.OrthographicCamera(
+// 	-1 * aspectRatio,
+// 	1 * aspectRatio,
+// 	1,
+// 	-1,
+// 	0.1,
+// 	200
+// )
 
 camera.position.z = 5
 
@@ -49,20 +49,38 @@ const controls = new OrbitControls(camera, canvas)
 controls.enableDamping = true;
 controls.autoRotate = true;
 
+// check for window resizing
+window.addEventListener('resize', () => {
 
-function renderloop() {
+	console.log('resize!');
+	// updating aspect on every resizing
+	camera.aspect = window.innerWidth / window.innerHeight;
+	// need this method
+	camera.updateProjectionMatrix();
+	// updating renderer
+	renderer.setSize(window.innerWidth, window.innerHeight);
+})
+
+
+// function renderloop() {
+
+// 	// required if controls.enableDamping or controls.autoRotate are set to true
+// 	// controls.update(); should always go first
+// 	controls.update();
+// 	renderer.render(scene, camera);
+// 	window.requestAnimationFrame(renderloop);
+// }
+
+
+const renderloop = () => {
 
 	// required if controls.enableDamping or controls.autoRotate are set to true
 	// controls.update(); should always go first
 	controls.update();
-
 	renderer.render(scene, camera);
 	window.requestAnimationFrame(renderloop);
+};
 
-
-
-}
-
-renderloop()
+renderloop();
 
 //console.log(window.requestAnimationFrame);
