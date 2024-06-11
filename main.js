@@ -14,6 +14,10 @@ const cubeMesh = new THREE.Mesh(
 )
 scene.add(cubeMesh)
 
+cubeMesh.position.x = -1;
+const helper = new THREE.AxesHelper(5);
+scene.add(helper);
+
 // initialize the camera
 const camera = new THREE.PerspectiveCamera(
   35, 
@@ -43,8 +47,8 @@ const renderer = new THREE.WebGLRenderer({
 
 // need to set size before the render loop
 renderer.setSize(window.innerWidth, window.innerHeight)
-const maxPixelRatio = Math.min(window.devicePixelRatio, 2);
-renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+// const maxPixelRatio = Math.min(window.devicePixelRatio, 2);
+// renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
 
 // orbit controls
 const controls = new OrbitControls(camera, canvas)
