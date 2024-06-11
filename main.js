@@ -37,12 +37,14 @@ camera.position.z = 5
 // initialize the renderer
 const canvas = document.querySelector('canvas.threejs')
 const renderer = new THREE.WebGLRenderer({
-  canvas: canvas
+  canvas: canvas,
+  antialias: true,
 })
 
 // need to set size before the render loop
 renderer.setSize(window.innerWidth, window.innerHeight)
-
+const maxPixelRatio = Math.min(window.devicePixelRatio, 2);
+renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
 
 // orbit controls
 const controls = new OrbitControls(camera, canvas)
