@@ -63,7 +63,11 @@ export default class InputController {
     }
 
     initJoystick() {
-        if (!isMobileDevice()) return; // Only initialize joystick on mobile devices
+        console.log("Initializing joystick...");
+        if (!isMobileDevice()) {
+            console.log("Not a mobile device, skipping joystick initialization.");
+            return;
+        }
 
         this.joystick = nipplejs.create({
             zone: document.body,
@@ -105,5 +109,8 @@ export default class InputController {
 }
 
 function isMobileDevice() {
-    return /Mobi|Android/i.test(navigator.userAgent);
+    const mobileRegex = /Mobi|Android|iPhone|iPad|iPod/i;
+    const isMobile = mobileRegex.test(navigator.userAgent);
+    console.log(`Is mobile device: ${isMobile}`);
+    return isMobile;
 }

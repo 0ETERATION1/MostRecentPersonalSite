@@ -40,9 +40,7 @@ export default class Preloader {
             this.startButton.classList.add('fadeOut');
 
             // Initialize the joystick only after the user presses start
-            if (isMobileDevice()) {
-                this.inputController.initJoystick();
-            }
+            this.inputController.initJoystick();
 
             window.setTimeout(() => {
                 this.overlay.remove();
