@@ -30,7 +30,7 @@ body {
     transform: translate(-50%, -50%);
     color: white;
     background-color: transparent;
-    font-family: 'Amatic SC';
+    font-family: 'Avant Garde"';
     font-size: 2rem;
     opacity: 1;
     transition: opacity 1s;
@@ -49,7 +49,7 @@ body {
     color: white;
     background-color: transparent;
     font-size: 4rem;
-    font-family: 'Amatic SC';
+    font-family: 'Avant Garde';
     opacity: 0;
     transition: opacity 0.5s;
     display: none;
@@ -150,4 +150,9 @@ body {
 
 .modal p {
     font-weight: 300;
+}
+
+.nipple {
+    position: absolute;
+    transition: left 0.2s, top 0.2s;
 }

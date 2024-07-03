@@ -66,14 +66,15 @@ export default class InputController {
     }
 
     initJoystick() {
-        const joystick = nipplejs.create({
+        this.joystick = nipplejs.create({
             zone: document.body,
             mode: 'static',
             position: { left: '50%', bottom: '50px' },
-            color: 'blue'
+            color: 'blue',
+            size: 100,
         });
 
-        joystick.on('move', (evt, data) => {
+        this.joystick.on('move', (evt, data) => {
             const angle = data.angle.degree;
             if (angle >= 45 && angle < 135) {
                 inputStore.setState({ forward: true, backward: false });
@@ -86,9 +87,21 @@ export default class InputController {
             }
         });
 
-        joystick.on('end', () => {
+        this.joystick.on('end', () => {
             inputStore.setState({ forward: false, backward: false, left: false, right: false });
         });
+
+        window.addEventListener('touchstart', (event) => this.onTouchStart(event));
+    }
+
+    onTouchStart(event) {
+        const touch = event.touches[0];
+        const position = { left: `${touch.clientX}px`, top: `${touch.clientY}px` };
+
+        if (this.joystick) {
+            this.joystick[0].ui.el.style.left = position.left;
+            this.joystick[0].ui.el.style.top = position.top;
+        }
     }
 }
 
