@@ -74,24 +74,28 @@ export default class InputController {
 
         this.joystick.on('move', (evt, data) => {
             const currentTime = Date.now();
-            if (currentTime - this.lastMoveEvent > 50) { // Throttle event processing to every 50ms
+            if (currentTime - this.lastMoveEvent > 25) { // Throttle event processing to every 25ms
                 this.lastMoveEvent = currentTime;
-                const angle = data.angle.degree;
-                if (angle >= 45 && angle < 135) {
-                    inputStore.setState({ forward: true, backward: false });
-                } else if (angle >= 135 && angle < 225) {
-                    inputStore.setState({ left: true, right: false });
-                } else if (angle >= 225 && angle < 315) {
-                    inputStore.setState({ backward: true, forward: false });
-                } else {
-                    inputStore.setState({ right: true, left: false });
-                }
+                this.updateInputState(data);
             }
         });
 
         this.joystick.on('end', () => {
             inputStore.setState({ forward: false, backward: false, left: false, right: false });
         });
+    }
+
+    updateInputState(data) {
+        const angle = data.angle.degree;
+        if (angle >= 45 && angle < 135) {
+            inputStore.setState({ forward: true, backward: false });
+        } else if (angle >= 135 && angle < 225) {
+            inputStore.setState({ left: true, right: false });
+        } else if (angle >= 225 && angle < 315) {
+            inputStore.setState({ backward: true, forward: false });
+        } else {
+            inputStore.setState({ right: true, left: false });
+        }
     }
 }
 
