@@ -63,16 +63,12 @@ export default class InputController {
     }
 
     initJoystick() {
-        console.log("Initializing joystick...");
-        if (!isMobileDevice()) {
-            console.log("Not a mobile device, skipping joystick initialization.");
-            return;
-        }
+        if (!isMobileDevice()) return; // Only initialize joystick on mobile devices
 
         this.joystick = nipplejs.create({
             zone: document.body,
             mode: 'static',
-            position: { left: '50%', bottom: '50px' },
+            position: { left: '20%', bottom: '20%' }, // Fixed position
             color: 'blue',
             size: 100,
         });
@@ -93,24 +89,9 @@ export default class InputController {
         this.joystick.on('end', () => {
             inputStore.setState({ forward: false, backward: false, left: false, right: false });
         });
-
-        window.addEventListener('touchstart', (event) => this.onTouchStart(event));
-    }
-
-    onTouchStart(event) {
-        const touch = event.touches[0];
-        const position = { left: `${touch.clientX}px`, top: `${touch.clientY}px` };
-
-        if (this.joystick) {
-            this.joystick[0].ui.el.style.left = position.left;
-            this.joystick[0].ui.el.style.top = position.top;
-        }
     }
 }
 
 function isMobileDevice() {
-    const mobileRegex = /Mobi|Android|iPhone|iPad|iPod/i;
-    const isMobile = mobileRegex.test(navigator.userAgent);
-    console.log(`Is mobile device: ${isMobile}`);
-    return isMobile;
+    return /Mobi|Android/i.test(navigator.userAgent);
 }
