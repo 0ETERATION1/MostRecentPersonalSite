@@ -18,6 +18,7 @@
         const deltaTime = elapsedTime - this.previousElapsedTime
         this.previousElapsedTime = elapsedTime
 
+        //this.app.update(deltaTime); // Update the app (handles input and avatar movement)
         this.world.loop(deltaTime, elapsedTime)
         this.camera.loop(deltaTime)
         this.renderer.loop()

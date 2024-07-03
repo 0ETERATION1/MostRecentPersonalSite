@@ -9,7 +9,9 @@ export default class InputController {
         this.touchStartX = 0;
         this.touchStartY = 0;
 
-        this.initJoystick();
+        if (isMobileDevice()) {
+            this.initJoystick();
+        }
     }
 
     startListening() {
@@ -88,4 +90,8 @@ export default class InputController {
             inputStore.setState({ forward: false, backward: false, left: false, right: false });
         });
     }
+}
+
+function isMobileDevice() {
+    return /Mobi|Android/i.test(navigator.userAgent);
 }
