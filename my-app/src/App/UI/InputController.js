@@ -8,10 +8,7 @@ export default class InputController {
         this.keyPressed = {};
         this.touchStartX = 0;
         this.touchStartY = 0;
-
-        if (isMobileDevice()) {
-            this.initJoystick();
-        }
+        this.joystick = null; // Initialize joystick as null
     }
 
     startListening() {
@@ -66,6 +63,8 @@ export default class InputController {
     }
 
     initJoystick() {
+        if (!isMobileDevice()) return; // Only initialize joystick on mobile devices
+
         this.joystick = nipplejs.create({
             zone: document.body,
             mode: 'static',
