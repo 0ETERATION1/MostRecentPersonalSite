@@ -13,6 +13,14 @@ export default class InputController {
     startListening() {
         window.addEventListener("keydown", (event) => this.onKeyDown(event));
         window.addEventListener("keyup", (event) => this.onKeyUp(event));
+
+        // Prevent default touch events that cause scrolling
+        window.addEventListener("touchstart", (event) => this.preventScroll(event), { passive: false });
+        window.addEventListener("touchmove", (event) => this.preventScroll(event), { passive: false });
+    }
+
+    preventScroll(event) {
+        event.preventDefault();
     }
 
     onKeyDown(event) {
@@ -71,6 +79,9 @@ export default class InputController {
             color: 'blue',
             size: 100,
         });
+
+        // Prevent default touch actions on joystick element
+        this.joystick[0].ui.el.style.touchAction = 'none';
 
         this.joystick.on('move', (evt, data) => {
             const currentTime = Date.now();
