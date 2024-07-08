@@ -9,37 +9,41 @@ import AssetLoader from './Utils/AssetLoader.js'
 import Preloader from './UI/Preloader.js'
 import InputController from './UI/InputController.js'
 import ModalManager from './UI/ModalManager.js'
+import Text from './World/Text.js'
 
 let instance = null
 
 export default class App{
     constructor() {
-        if(instance) return instance
-        instance = this
+        if(instance) return instance;
+        instance = this;
 
         // threejs elements
         this.canvas = document.querySelector("canvas.threejs");
-        this.scene = new THREE.Scene()
+        this.scene = new THREE.Scene();
 
         // add debug GUI
-        this.gui = new GUI()
+        this.gui = new GUI();
 
         // Asset Loader
-        this.assetLoader = new AssetLoader()
+        this.assetLoader = new AssetLoader();
 
         // UI
-        this.preloader = new Preloader()
-        this.inputController = new InputController()
+        this.preloader = new Preloader();
+        this.inputController = new InputController();
 
         // World
-        this.world = new World()
+        this.world = new World();
 
         // Camera and Renderer
-        this.camera = new Camera()
-        this.renderer = new Renderer()
+        this.camera = new Camera();
+        this.renderer = new Renderer();
+
+        // adding text class
+        this.text = new Text(this.scene);
 
         // extra utils
-        this.loop = new Loop()
-        this.resize = new Resize()
+        this.loop = new Loop();
+        this.resize = new Resize();
     }
 }
