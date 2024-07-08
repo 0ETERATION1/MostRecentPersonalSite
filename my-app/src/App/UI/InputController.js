@@ -14,13 +14,16 @@ export default class InputController {
         window.addEventListener("keydown", (event) => this.onKeyDown(event));
         window.addEventListener("keyup", (event) => this.onKeyUp(event));
 
-        // Prevent default touch events that cause scrolling
+        // Prevent default touch events that cause scrolling, except for the start button
         window.addEventListener("touchstart", (event) => this.preventScroll(event), { passive: false });
         window.addEventListener("touchmove", (event) => this.preventScroll(event), { passive: false });
     }
 
     preventScroll(event) {
-        event.preventDefault();
+        const startButton = document.querySelector('.start');
+        if (!startButton.contains(event.target)) {
+            event.preventDefault();
+        }
     }
 
     onKeyDown(event) {
