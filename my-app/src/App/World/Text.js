@@ -11,9 +11,11 @@ class Text {
     init() {
         const loader = new FontLoader();
         loader.load('https://threejs.org/examples/fonts/droid/droid_serif_regular.typeface.json', (font) => {
+            const textString = this.isMobileDevice() ? 'Use Blue Circle to Move' : 'WASD or Arrow Keys to Move';
+            const additionalTextString = 'Enter a Portal to Find out More!';
 
-            // creating a text geometry
-            const textGeometry = new TextGeometry('WASD to Move or the Arrow Keys', {
+            // Main Text Geometry
+            const textGeometry = new TextGeometry(textString, {
                 font: font,
                 size: 1,
                 height: 0.2,
@@ -21,15 +23,8 @@ class Text {
                 bevelEnabled: false,
             });
 
-            // const textGeometry1 = new TextGeometry('or Use the Arrow Keys!', {
-            //     font: font,
-            //     size: 1,
-            //     height: 0.2,
-            //     curveSegments: 12,
-            //     bevelEnabled: false,
-            // });
-
-            const textGeometry2 = new TextGeometry('Enter a Portal to Find out More!', {
+            // Additional Text Geometry
+            const textGeometry2 = new TextGeometry(additionalTextString, {
                 font: font,
                 size: 1,
                 height: 0.2,
@@ -39,26 +34,29 @@ class Text {
 
             const textMaterial = new THREE.MeshBasicMaterial({ color: 0xffffff });
             const textMesh = new THREE.Mesh(textGeometry, textMaterial);
-            //const textMesh1 = new THREE.Mesh(textGeometry1, textMaterial);
             const textMesh2 = new THREE.Mesh(textGeometry2, textMaterial);
 
-            
+            // Adjust position based on device type
+            if (this.isMobileDevice()) {
+                textMesh.position.set(2, 2, 0); // Adjust for mobile
+                textMesh.scale.set(0.8, 0.8, 0.8); // Scale down for mobile
+                textMesh2.position.set(2, 2, 2); // Adjust for mobile
+                textMesh2.scale.set(0.8, 0.8, 0.8); // Scale down for mobile
+            } else {
+                textMesh.position.set(2, 0, 0); // Adjust for desktop
+                textMesh2.position.set(2, 0, 2); // Adjust for desktop
+            }
 
-            textMesh.position.set(2, 0, 0); // Adjust the position as needed
-
-            //textMesh1.position.set(2, 0, 2); // Adjust the position as needed
-            textMesh2.position.set(2, 0, 4); // Adjust the position as needed
-
-
-            textMesh.rotation.set(-Math.PI / 2, 0, 0);
-            //textMesh1.rotation.set(-Math.PI / 2, 0, 0); 
+            textMesh.rotation.set(-Math.PI / 2, 0, 0); // Rotate text to face the camera if necessary
             textMesh2.rotation.set(-Math.PI / 2, 0, 0); // Rotate text to face the camera if necessary
-            
 
             this.scene.add(textMesh);
-            //this.scene.add(textMesh1);
             this.scene.add(textMesh2);
         });
+    }
+
+    isMobileDevice() {
+        return /Mobi|Android/i.test(navigator.userAgent);
     }
 }
 
