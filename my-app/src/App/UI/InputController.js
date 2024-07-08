@@ -17,12 +17,17 @@ export default class InputController {
         // Prevent default touch events that cause scrolling, except for the start button
         window.addEventListener("touchstart", (event) => this.preventScroll(event), { passive: false });
         window.addEventListener("touchmove", (event) => this.preventScroll(event), { passive: false });
+        window.addEventListener("touchend", (event) => this.preventScroll(event), { passive: false });
 
         // Prevent double-tap to zoom
         window.addEventListener("dblclick", (event) => event.preventDefault(), { passive: false });
         window.addEventListener("gesturestart", (event) => event.preventDefault(), { passive: false });
         window.addEventListener("gesturechange", (event) => event.preventDefault(), { passive: false });
         window.addEventListener("gestureend", (event) => event.preventDefault(), { passive: false });
+
+        // Prevent long-press context menu and "Find in Page"
+        document.addEventListener("contextmenu", (event) => event.preventDefault(), { passive: false });
+        document.addEventListener("selectstart", (event) => event.preventDefault(), { passive: false });
     }
 
     preventScroll(event) {
