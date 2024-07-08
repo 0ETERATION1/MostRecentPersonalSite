@@ -12,12 +12,18 @@ body, html {
     -webkit-user-select: none;
     -moz-user-select: none;
     -ms-user-select: none;
-    user-select: none;
-    
     touch-action: none; /* Disable touch actions */
     overflow: hidden; /* Disable scrolling */
 }
 
+canvas {
+    -webkit-touch-callout: none; /* Prevent callout to copy image, etc when tap to hold */
+    -webkit-user-select: none; /* Prevents selecting text */
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none; /* Standard property for user selection */
+    -webkit-tap-highlight-color: rgba(0, 0, 0, 0); /* Prevents tap highlight color */
+}
 
 .overlay {
     opacity: 1;
