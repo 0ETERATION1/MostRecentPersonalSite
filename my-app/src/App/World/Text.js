@@ -38,9 +38,9 @@ class Text {
 
             // Adjust position based on device type
             if (this.isMobileDevice()) {
-                textMesh.position.set(-2, 0, 2); // Adjust for mobile
+                textMesh.position.set(-4, 0, 2); // Adjust for mobile
                 textMesh.scale.set(0.8, 0.8, 0.8); // Scale down for mobile
-                textMesh2.position.set(-2, 0, 4); // Adjust for mobile
+                textMesh2.position.set(-4, 0, 4); // Adjust for mobile
                 textMesh2.scale.set(0.8, 0.8, 0.8); // Scale down for mobile
             } else {
                 textMesh.position.set(-2, 0, 2); // Adjust for desktop
