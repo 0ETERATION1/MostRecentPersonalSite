@@ -38,13 +38,14 @@ class Text {
 
             // Adjust position based on device type
             if (this.isMobileDevice()) {
-                textMesh.position.set(0, 0, 0); // Adjust for mobile
+                textMesh.position.set(-2, 0, 2); // Adjust for mobile
                 textMesh.scale.set(0.8, 0.8, 0.8); // Scale down for mobile
-                textMesh2.position.set(0, 0, 2); // Adjust for mobile
+                textMesh2.position.set(-2, 0, 4); // Adjust for mobile
                 textMesh2.scale.set(0.8, 0.8, 0.8); // Scale down for mobile
             } else {
-                textMesh.position.set(2, 0, 0); // Adjust for desktop
-                textMesh2.position.set(2, 0, 2); // Adjust for desktop
+                textMesh.position.set(-2, 0, 2); // Adjust for desktop
+                //textMesh.position.set(-2, 0, 2); // Adjust for desktop
+                textMesh2.position.set(-2, 0, 4); // Adjust for desktop
             }
 
             textMesh.rotation.set(-Math.PI / 2, 0, 0); // Rotate text to face the camera if necessary
