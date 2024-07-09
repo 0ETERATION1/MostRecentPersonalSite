@@ -1,54 +1,55 @@
-import * as THREE from "three"
-import App from "../App"
-import ModalManager from "../UI/ModalManager"
+import * as THREE from "three";
+import App from "../App";
+import ModalManager from "../UI/ModalManager";
+
+const BLOOM_SCENE = 1;
 
 export default class Portal {
     constructor(portalMesh, modalInfo) {
-        this.app = new App()
-        this.portalMesh = portalMesh
-        this.modalInfo = modalInfo
-        this.modalManager = new ModalManager()
+        this.app = new App();
+        this.portalMesh = portalMesh;
+        this.modalInfo = modalInfo;
+        this.modalManager = new ModalManager();
 
         this.portalNearMaterial = new THREE.MeshBasicMaterial({
             color: 0xFFFFFF,
             transparent: true,
             opacity: 0.8,
-        })
+        });
 
         this.portalFarMaterial = new THREE.MeshBasicMaterial({
             color: 0x00FFFF,
             transparent: true,
             opacity: 0.8,
-        })
+        });
 
-        this.portalMesh.material = this.portalFarMaterial
+        this.portalMesh.material = this.portalFarMaterial;
+        this.portalMesh.layers.enable(BLOOM_SCENE); // Enable bloom layer for the portal
 
-        this.prevIsNear = false
-
+        this.prevIsNear = false;
     }
 
     loop() {
         this.character = this.app.world.character.instance;
         if (this.character) {
-            const portalPosition = new THREE.Vector3()
-            this.portalMesh.getWorldPosition(portalPosition)
- 
-            const distance = this.character.position.distanceTo(portalPosition)
-            const isNear = distance < 1.5
+            const portalPosition = new THREE.Vector3();
+            this.portalMesh.getWorldPosition(portalPosition);
+
+            const distance = this.character.position.distanceTo(portalPosition);
+            const isNear = distance < 1.5;
             if (isNear) {
-                if (!this.prevIsNear){
-                    this.modalManager.openModal(this.modalInfo.title, this.modalInfo.description)
-                    this.portalMesh.material = this.portalNearMaterial
+                if (!this.prevIsNear) {
+                    this.modalManager.openModal(this.modalInfo.title, this.modalInfo.description);
+                    this.portalMesh.material = this.portalNearMaterial;
                 }
-                this.prevIsNear = true
+                this.prevIsNear = true;
             } else {
                 if (this.prevIsNear) {
-                    this.modalManager.closeModal()
-                    this.portalMesh.material = this.portalFarMaterial
+                    this.modalManager.closeModal();
+                    this.portalMesh.material = this.portalFarMaterial;
                 }
-                this.prevIsNear = false
+                this.prevIsNear = false;
             }
-
         }
     }
 }
