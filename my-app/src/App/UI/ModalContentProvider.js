@@ -23,11 +23,24 @@ export default class ModalContentProvider {
         },
         projects: {
           title: 'Projects',
-          description: 'me',
+          description: 
+          
+          `
+          <p>Here are some of my notable projects:</p>
+                    <ul class='no-bullets'>
+                        <li><a href="https://github.com/0ETERATION1/Terptune" target="_blank">Project 1</a>: Music Database App - Terptune.</li>
+                        <li><a href="https://github.com/0ETERATION1/Text-Generation" target="_blank">Project 2</a>: LLM that summarizes text.</li>
+                    </ul>
+          `,
         },
         contactMe: {
           title: 'Contact Me',
-          description: 'me',
+          description: 
+          `
+          
+          `
+          
+          ,
         },
       }
     }
