@@ -253,32 +253,3 @@ form input, form textarea, form button {
     position: absolute;
     transition: left 0.2s, top 0.2s;
 }
-
-/* Mobile-specific styles */
-@media (max-width: 768px) {
-    .modal-wrapper {
-        width: 90% !important; /* Increase width for mobile */
-        height: 90% !important; /* Increase height for mobile */
-        padding: 20px !important; /* Adjust padding for mobile */
-    }
-
-    .modal-content {
-        font-size: 24px !important; /* Significantly increase font size for mobile */
-    }
-
-    .modal-content h1,
-    .modal-content h2,
-    .modal-content h3,
-    .modal-content h4,
-    .modal-content h5,
-    .modal-content h6 {
-        font-size: 5em !important; /* Adjust header sizes for mobile */
-    }
-
-    .modal-content p,
-    .modal-content a,
-    .modal-content ul,
-    .modal-content li {
-        font-size: 4em !important; /* Adjust paragraph and link sizes for mobile */
-    }
-}

@@ -14,7 +14,7 @@ export default class InputController {
         window.addEventListener("keydown", (event) => this.onKeyDown(event));
         window.addEventListener("keyup", (event) => this.onKeyUp(event));
 
-        // Prevent default touch events that cause scrolling, except for the start button
+        // Prevent default touch events that cause scrolling, except for the start button and form elements
         window.addEventListener("touchstart", (event) => this.preventScroll(event), { passive: false });
         window.addEventListener("touchmove", (event) => this.preventScroll(event), { passive: false });
         window.addEventListener("touchend", (event) => this.preventScroll(event), { passive: false });
