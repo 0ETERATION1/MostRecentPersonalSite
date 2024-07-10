@@ -32,12 +32,20 @@ export default class InputController {
 
     preventScroll(event) {
         const startButton = document.querySelector('.start');
-        if (!startButton.contains(event.target)) {
+        if (!startButton.contains(event.target) && !this.isFormField(event.target)) {
             event.preventDefault();
         }
     }
 
+    isFormField(element) {
+        return ['INPUT', 'TEXTAREA', 'BUTTON'].includes(element.tagName);
+    }
+
     onKeyDown(event) {
+        if (this.isFormField(document.activeElement)) {
+            return; // Prevent movement if typing in a form field
+        }
+
         if (!this.keyPressed[event.code]) {
             switch (event.code) {
                 case "KeyW":
@@ -62,6 +70,10 @@ export default class InputController {
     }
 
     onKeyUp(event) {
+        if (this.isFormField(document.activeElement)) {
+            return; // Prevent movement if typing in a form field
+        }
+
         switch (event.code) {
             case "KeyW":
             case "ArrowUp":
