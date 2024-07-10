@@ -15,7 +15,7 @@ body {
 /* Styles for smaller screens (mobile devices) */
 @media (max-width: 768px) {
     .modal-content {
-        font-size: 20px; /* Increase font size for mobile */
+        font-size: 40px; /* Increase font size for mobile */
     }
 
     .modal-content h1,
@@ -24,14 +24,14 @@ body {
     .modal-content h4,
     .modal-content h5,
     .modal-content h6 {
-        font-size: 1.5em; /* Adjust header sizes for mobile */
+        font-size: 4em; /* Adjust header sizes for mobile */
     }
 
     .modal-content p,
     .modal-content a,
     .modal-content ul,
     .modal-content li {
-        font-size: 1.25em; /* Adjust paragraph and link sizes for mobile */
+        font-size: 5em; /* Adjust paragraph and link sizes for mobile */
     }
 }
 
