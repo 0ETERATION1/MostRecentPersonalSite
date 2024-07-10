@@ -7,6 +7,81 @@ body {
     font-family: 'Amatic SC', cursive;
 }
 
+/* General modal styles */
+.modal {
+    display: none; /* Hidden by default */
+    position: fixed; /* Stay in place */
+    z-index: 1; /* Sit on top */
+    left: 0;
+    top: 0;
+    width: 100%; /* Full width */
+    height: 100%; /* Full height */
+    overflow: auto; /* Enable scroll if needed */
+    background-color: rgba(0, 0, 0, 0.5); /* Black background with opacity */
+}
+
+.modal-wrapper {
+    position: relative;
+    margin: auto;
+    padding: 20px;
+    border: 1px solid #888;
+    width: 80%; /* Default width */
+    max-width: 600px; /* Max width */
+    background-color: #fff;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.5);
+    overflow: hidden; /* Hide overflow */
+    border-radius: 8px; /* Rounded corners */
+}
+
+/* Styles for smaller screens (mobile devices) */
+@media (max-width: 768px) {
+    .modal-wrapper {
+        width: 90%; /* Increase width for mobile */
+        max-width: none; /* Remove max-width */
+        height: 90%; /* Increase height for mobile */
+        padding: 20px; /* Adjust padding for mobile */
+    }
+
+    .modal-content {
+        font-size: 24px; /* Significantly increase font size for mobile */
+    }
+
+    .modal-content h1,
+    .modal-content h2,
+    .modal-content h3,
+    .modal-content h4,
+    .modal-content h5,
+    .modal-content h6 {
+        font-size: 2em; /* Adjust header sizes for mobile */
+    }
+
+    .modal-content p,
+    .modal-content a,
+    .modal-content ul,
+    .modal-content li {
+        font-size: 1.5em; /* Adjust paragraph and link sizes for mobile */
+    }
+}
+
+/* Close button style */
+.close {
+    position: absolute;
+    top: 10px;
+    right: 25px;
+    color: #aaa;
+    font-size: 28px;
+    font-weight: bold;
+    transition: 0.3s;
+}
+
+.close:hover,
+.close:focus {
+    color: #000;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+
 
 /* .modal-content {
     font-size: 16px;
