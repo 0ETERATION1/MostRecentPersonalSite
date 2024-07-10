@@ -105,6 +105,7 @@ form input, form textarea, form button {
     touch-action: auto; /* Allow touch actions */
 }
 
+
 .overlay {
     opacity: 1;
     background-color: rgb(0, 0, 0);

@@ -109,7 +109,17 @@ export default class InputController {
         // Prevent default touch actions on joystick element
         this.joystick[0].ui.el.style.touchAction = 'none';
 
+        this.joystick.on('start', (evt, data) => {
+            if (this.isFormField(evt.target)) {
+                return; // Ignore joystick events if a form field is the target
+            }
+        });
+
         this.joystick.on('move', (evt, data) => {
+            if (this.isFormField(evt.target)) {
+                return; // Ignore joystick events if a form field is the target
+            }
+
             const currentTime = Date.now();
             if (currentTime - this.lastMoveEvent > 25) { // Throttle event processing to every 25ms
                 this.lastMoveEvent = currentTime;
@@ -117,7 +127,11 @@ export default class InputController {
             }
         });
 
-        this.joystick.on('end', () => {
+        this.joystick.on('end', (evt) => {
+            if (this.isFormField(evt.target)) {
+                return; // Ignore joystick events if a form field is the target
+            }
+
             inputStore.setState({ forward: false, backward: false, left: false, right: false });
         });
     }
