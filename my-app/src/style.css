@@ -1,3 +1,4 @@
+/* Base Styles */
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500&display=swap');
 @import url('https://fonts.googleapis.com/css?family=Amatic+SC');
 
@@ -15,7 +16,6 @@ body {
 
 .projects-list li {
     display: grid;
-    /* grid-template-columns: max-content 1fr; */
     column-gap: 0.5em; /* Adjust spacing between title and description */
     margin-bottom: 0.5em;
 }
@@ -28,14 +28,9 @@ body {
     margin: 0; /* Remove default margin */
 }
 
-/* 
-.no-bullets li {
-    padding-left: 1em; 
-    text-indent: -1em; 
-}  */
-
 body, html {
     user-select: none; 
+    height: -webkit-fill-available;
     -webkit-user-select: none;
     -moz-user-select: none;
     -ms-user-select: none;
@@ -139,7 +134,7 @@ canvas {
 
 .modal-wrapper {
     position: relative;
-    width: 50%;
+    width: 70%;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
@@ -184,6 +179,7 @@ canvas {
 .modal h1,
 .modal p {
     margin: 0 0 15px 0;
+    font-size: 20px;
 }
 
 .modal h1 {
@@ -203,13 +199,13 @@ canvas {
 /* Mobile-specific styles */
 @media (max-width: 768px) {
     .modal-wrapper {
-        width: 90%; /* Increase width for mobile */
-        height: 90%; /* Increase height for mobile */
-        padding: 20px; /* Adjust padding for mobile */
+        width: 90% !important; /* Increase width for mobile */
+        height: 90% !important; /* Increase height for mobile */
+        padding: 20px !important; /* Adjust padding for mobile */
     }
 
     .modal-content {
-        font-size: 24px; /* Significantly increase font size for mobile */
+        font-size: 24px !important; /* Significantly increase font size for mobile */
     }
 
     .modal-content h1,
@@ -218,13 +214,13 @@ canvas {
     .modal-content h4,
     .modal-content h5,
     .modal-content h6 {
-        font-size: 2em; /* Adjust header sizes for mobile */
+        font-size: 5em !important; /* Adjust header sizes for mobile */
     }
 
     .modal-content p,
     .modal-content a,
     .modal-content ul,
     .modal-content li {
-        font-size: 1.5em; /* Adjust paragraph and link sizes for mobile */
+        font-size: 4em !important; /* Adjust paragraph and link sizes for mobile */
     }
 }
