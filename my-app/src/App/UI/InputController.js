@@ -13,39 +13,9 @@ export default class InputController {
     startListening() {
         window.addEventListener("keydown", (event) => this.onKeyDown(event));
         window.addEventListener("keyup", (event) => this.onKeyUp(event));
-
-        // Prevent default touch events that cause scrolling, except for the start button and form elements
-        window.addEventListener("touchstart", (event) => this.preventScroll(event), { passive: false });
-        window.addEventListener("touchmove", (event) => this.preventScroll(event), { passive: false });
-        window.addEventListener("touchend", (event) => this.preventScroll(event), { passive: false });
-
-        // Prevent double-tap to zoom
-        window.addEventListener("dblclick", (event) => event.preventDefault(), { passive: false });
-        window.addEventListener("gesturestart", (event) => event.preventDefault(), { passive: false });
-        window.addEventListener("gesturechange", (event) => event.preventDefault(), { passive: false });
-        window.addEventListener("gestureend", (event) => event.preventDefault(), { passive: false });
-
-        // Prevent long-press context menu and "Find in Page"
-        document.addEventListener("contextmenu", (event) => event.preventDefault(), { passive: false });
-        document.addEventListener("selectstart", (event) => event.preventDefault(), { passive: false });
-    }
-
-    preventScroll(event) {
-        const startButton = document.querySelector('.start');
-        if (!startButton.contains(event.target) && !this.isFormField(event.target)) {
-            event.preventDefault();
-        }
-    }
-
-    isFormField(element) {
-        return ['INPUT', 'TEXTAREA', 'BUTTON'].includes(element.tagName);
     }
 
     onKeyDown(event) {
-        if (this.isFormField(document.activeElement)) {
-            return; // Prevent movement if typing in a form field
-        }
-
         if (!this.keyPressed[event.code]) {
             switch (event.code) {
                 case "KeyW":
@@ -70,10 +40,6 @@ export default class InputController {
     }
 
     onKeyUp(event) {
-        if (this.isFormField(document.activeElement)) {
-            return; // Prevent movement if typing in a form field
-        }
-
         switch (event.code) {
             case "KeyW":
             case "ArrowUp":
@@ -106,20 +72,7 @@ export default class InputController {
             size: 100,
         });
 
-        // Prevent default touch actions on joystick element
-        this.joystick[0].ui.el.style.touchAction = 'none';
-
-        this.joystick.on('start', (evt, data) => {
-            if (this.isFormField(evt.target)) {
-                return; // Ignore joystick events if a form field is the target
-            }
-        });
-
         this.joystick.on('move', (evt, data) => {
-            if (this.isFormField(evt.target)) {
-                return; // Ignore joystick events if a form field is the target
-            }
-
             const currentTime = Date.now();
             if (currentTime - this.lastMoveEvent > 25) { // Throttle event processing to every 25ms
                 this.lastMoveEvent = currentTime;
@@ -127,13 +80,21 @@ export default class InputController {
             }
         });
 
-        this.joystick.on('end', (evt) => {
-            if (this.isFormField(evt.target)) {
-                return; // Ignore joystick events if a form field is the target
-            }
-
+        this.joystick.on('end', () => {
             inputStore.setState({ forward: false, backward: false, left: false, right: false });
         });
+    }
+
+    disableJoystick() {
+        if (this.joystick) {
+            this.joystick[0].ui.el.style.display = 'none'; // Hide joystick element
+        }
+    }
+
+    enableJoystick() {
+        if (this.joystick) {
+            this.joystick[0].ui.el.style.display = 'block'; // Show joystick element
+        }
     }
 
     updateInputState(data) {
