@@ -98,11 +98,11 @@ canvas {
 }
 
 form input, form textarea, form button {
-    user-select: text; /* Allow text selection */
+    user-select: text; 
     -webkit-user-select: text;
     -moz-user-select: text;
     -ms-user-select: text;
-    touch-action: auto; /* Allow touch actions */
+    touch-action: auto;
 }
 
 .overlay {

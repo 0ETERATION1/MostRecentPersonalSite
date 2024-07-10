@@ -7,7 +7,7 @@ export default class ModalManager {
         this.close.onclick = () => {
             this.closeModal();
         };
-        this.inputController = new App().inputController; // Use the existing inputController instance
+        this.inputController = new App().inputController;
     }
 
     openModal(title, description) {
@@ -16,7 +16,7 @@ export default class ModalManager {
         this.modal.style.display = "block";
         this.modal.classList.remove('fadeOut');
         this.modal.classList.add('fadeIn');
-        this.inputController.disableJoystick(); // Hide joystick when modal is opened
+        this.inputController.disableInputs();
     }
 
     closeModal() {
@@ -24,7 +24,7 @@ export default class ModalManager {
         this.modal.classList.add('fadeOut');
         setTimeout(() => {
             this.modal.style.display = "none";
-            this.inputController.enableJoystick(); // Show joystick when modal is closed
+            this.inputController.enableInputs();
         }, 600);
     }
 }

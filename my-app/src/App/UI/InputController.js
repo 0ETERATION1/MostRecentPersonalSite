@@ -6,16 +6,31 @@ export default class InputController {
         this.startListening();
         this.inputStore = inputStore;
         this.keyPressed = {};
-        this.joystick = null; // Initialize joystick as null
-        this.lastMoveEvent = 0; // Timestamp for throttling
+        this.joystick = null;
+        this.joystickEnabled = true;
+        this.inputsEnabled = true;
     }
 
     startListening() {
         window.addEventListener("keydown", (event) => this.onKeyDown(event));
         window.addEventListener("keyup", (event) => this.onKeyUp(event));
+
+        // Prevent default touch events that cause scrolling, except for the start button
+        window.addEventListener("touchstart", (event) => this.preventScroll(event), { passive: false });
+        window.addEventListener("touchmove", (event) => this.preventScroll(event), { passive: false });
+        window.addEventListener("touchend", (event) => this.preventScroll(event), { passive: false });
+    }
+
+    preventScroll(event) {
+        const startButton = document.querySelector('.start');
+        const modal = document.getElementById("myModal");
+        if (!startButton.contains(event.target) && this.joystickEnabled && !modal.contains(event.target)) {
+            event.preventDefault();
+        }
     }
 
     onKeyDown(event) {
+        if (!this.inputsEnabled) return;
         if (!this.keyPressed[event.code]) {
             switch (event.code) {
                 case "KeyW":
@@ -40,6 +55,7 @@ export default class InputController {
     }
 
     onKeyUp(event) {
+        if (!this.inputsEnabled) return;
         switch (event.code) {
             case "KeyW":
             case "ArrowUp":
@@ -62,39 +78,49 @@ export default class InputController {
     }
 
     initJoystick() {
-        if (!isMobileDevice()) return; // Only initialize joystick on mobile devices
+        if (!isMobileDevice()) return;
 
         this.joystick = nipplejs.create({
             zone: document.body,
             mode: 'static',
-            position: { left: '20%', bottom: '20%' }, // Fixed position
+            position: { left: '20%', bottom: '20%' },
             color: 'blue',
             size: 100,
         });
 
         this.joystick.on('move', (evt, data) => {
-            const currentTime = Date.now();
-            if (currentTime - this.lastMoveEvent > 25) { // Throttle event processing to every 25ms
-                this.lastMoveEvent = currentTime;
-                this.updateInputState(data);
-            }
+            if (!this.inputsEnabled) return;
+            this.updateInputState(data);
         });
 
         this.joystick.on('end', () => {
+            if (!this.inputsEnabled) return;
             inputStore.setState({ forward: false, backward: false, left: false, right: false });
         });
     }
 
     disableJoystick() {
+        this.joystickEnabled = false;
         if (this.joystick) {
-            this.joystick[0].ui.el.style.display = 'none'; // Hide joystick element
+            this.joystick[0].ui.el.style.display = 'none';
         }
     }
 
     enableJoystick() {
+        this.joystickEnabled = true;
         if (this.joystick) {
-            this.joystick[0].ui.el.style.display = 'block'; // Show joystick element
+            this.joystick[0].ui.el.style.display = 'block';
         }
+    }
+
+    disableInputs() {
+        this.inputsEnabled = false;
+        this.disableJoystick();
+    }
+
+    enableInputs() {
+        this.inputsEnabled = true;
+        this.enableJoystick();
     }
 
     updateInputState(data) {
