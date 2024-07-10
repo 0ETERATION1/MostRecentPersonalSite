@@ -7,11 +7,34 @@ body {
     font-family: 'Amatic SC', cursive;
 }
 
-/* .no-bullets li{
-    list-style-type: none; 
-    text-indent: 0em; 
-    padding-left: 0em; 
-} */
+/* General modal styles */
+.modal-content {
+    font-size: 16px; /* Default font size */
+}
+
+/* Styles for smaller screens (mobile devices) */
+@media (max-width: 768px) {
+    .modal-content {
+        font-size: 20px; /* Increase font size for mobile */
+    }
+
+    .modal-content h1,
+    .modal-content h2,
+    .modal-content h3,
+    .modal-content h4,
+    .modal-content h5,
+    .modal-content h6 {
+        font-size: 1.5em; /* Adjust header sizes for mobile */
+    }
+
+    .modal-content p,
+    .modal-content a,
+    .modal-content ul,
+    .modal-content li {
+        font-size: 1.25em; /* Adjust paragraph and link sizes for mobile */
+    }
+}
+
 
 .projects-list {
     list-style-type: none; /* Remove bullets */
