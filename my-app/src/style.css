@@ -191,7 +191,7 @@ form input, form textarea, form button {
     opacity: 0;
 }
 
-#red {
+.red {
     color: red;
     font-weight: bold;
 }
