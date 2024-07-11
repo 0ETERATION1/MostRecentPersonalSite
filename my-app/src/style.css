@@ -78,7 +78,7 @@ button:hover {
     margin: 0; /* Remove default margin */
 }
 
-/* body, html {
+body, html {
     user-select: none; 
     height: -webkit-fill-available;
     -webkit-user-select: none;
@@ -95,7 +95,7 @@ canvas {
     -ms-user-select: none;
     user-select: none; 
     -webkit-tap-highlight-color: rgba(0, 0, 0, 0); 
-} */
+}
 
 form input, form textarea, form button {
     user-select: text; 
