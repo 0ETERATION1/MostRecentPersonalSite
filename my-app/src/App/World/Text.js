@@ -11,7 +11,7 @@ class Text {
     init() {
         const loader = new FontLoader();
         loader.load('https://threejs.org/examples/fonts/droid/droid_serif_regular.typeface.json', (font) => {
-            const textString = this.isMobileDevice() ? 'Use Blue Circle to Move' : 'WASD or Arrow Keys to Move';
+            const textString = this.isMobileDevice() ? 'Use Blue Circle to Move' : 'Use Arrow Keys to Move';
             const additionalTextString = 'Enter a Portal to Find out More!';
 
             // Main Text Geometry

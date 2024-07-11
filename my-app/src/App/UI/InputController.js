@@ -35,19 +35,19 @@ export default class InputController {
         if (!this.inputsEnabled) return;
         if (!this.keyPressed[event.code]) {
             switch (event.code) {
-                case "KeyW":
+                // case "KeyW":
                 case "ArrowUp":
                     inputStore.setState({ forward: true });
                     break;
-                case "KeyA":
+                // case "KeyA":
                 case "ArrowLeft":
                     inputStore.setState({ left: true });
                     break;
-                case "KeyS":
+                // case "KeyS":
                 case "ArrowDown":
                     inputStore.setState({ backward: true });
                     break;
-                case "KeyD":
+                // case "KeyD":
                 case "ArrowRight":
                     inputStore.setState({ right: true });
                     break;
@@ -60,19 +60,19 @@ export default class InputController {
     onKeyUp(event) {
         if (!this.inputsEnabled) return;
         switch (event.code) {
-            case "KeyW":
+            // case "KeyW":
             case "ArrowUp":
                 inputStore.setState({ forward: false });
                 break;
-            case "KeyA":
+            // case "KeyA":
             case "ArrowLeft":
                 inputStore.setState({ left: false });
                 break;
-            case "KeyS":
+            // case "KeyS":
             case "ArrowDown":
                 inputStore.setState({ backward: false });
                 break;
-            case "KeyD":
+            // case "KeyD":
             case "ArrowRight":
                 inputStore.setState({ right: false });
                 break;
