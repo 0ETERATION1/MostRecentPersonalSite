@@ -39,7 +39,7 @@ export default class ModalContentProvider {
 
   getContactMeDescription() {
       const mobileContent = `
-          <p>Please Double Tap to Enter Your Info!.</p>
+          <p id='red'>Please Double Tap to Enter Your Info!</p>
       `;
 
       const baseDescription = `

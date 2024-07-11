@@ -191,6 +191,11 @@ form input, form textarea, form button {
     opacity: 0;
 }
 
+#red {
+    color: red;
+    font-weight: bold;
+}
+
 .modal-wrapper {
     position: relative;
     width: 70%;
