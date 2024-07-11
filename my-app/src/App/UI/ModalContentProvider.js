@@ -15,7 +15,7 @@ export default class ModalContentProvider {
               <a href="mailto:terskinlalex@gmail.com" targer="_blank">terskinalex@gmail.com</a>
               </p>
               <h1>Looking for my resume?</h1>
-              <p>Download it here! <a href="/resume/AlexTerskin.pdf" target="_blank">here</a>.</p>
+              <p>Download it <a href="/resume/AlexTerskin.pdf" target="_blank">here!</a>.</p>
               `
           },
           projects: {
