@@ -10,7 +10,6 @@ export default class Preloader {
         this.overlay = document.querySelector('.overlay');
         this.loading = document.querySelector('.loading');
         this.startButton = document.querySelector('.start');
-        this.audioElement = document.getElementById('backgroundAudio');
 
         this.assetStore.subscribe((state) => {
             this.numberOfLoadedAssets = Object.keys(state.loadedAssets).length;
@@ -39,11 +38,6 @@ export default class Preloader {
             console.log('started');
             this.overlay.classList.add('fade');
             this.startButton.classList.add('fadeOut');
-
-            // Play the audio
-            this.audioElement.play().catch(error => {
-                console.error('Failed to play audio:', error);
-            });
 
             // Initialize the joystick only after the user presses start
             this.inputController.initJoystick();

@@ -30,7 +30,11 @@ export default class App{
 
         // UI
         this.preloader = new Preloader();
-        this.inputController = new InputController();
+
+        // making sure no duplicate input controllers are being created!
+        if (!this.inputController) {
+            this.inputController = new InputController();
+        }
 
         // World
         this.world = new World();

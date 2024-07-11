@@ -22,7 +22,6 @@ export default class Portal {
         });
 
         this.portalMesh.material = this.portalFarMaterial;
-
         this.prevIsNear = false;
     }
 
@@ -36,12 +35,15 @@ export default class Portal {
             const isNear = distance < 1.5;
             if (isNear) {
                 if (!this.prevIsNear) {
+                    console.log('Character entered portal area');
                     this.modalManager.openModal(this.modalInfo.title, this.modalInfo.description);
                     this.portalMesh.material = this.portalNearMaterial;
+                    this.app.inputController.destroyJoystick(); // Destroy the joystick when entering the portal
                 }
                 this.prevIsNear = true;
             } else {
                 if (this.prevIsNear) {
+                    console.log('Character exited portal area');
                     this.modalManager.closeModal();
                     this.portalMesh.material = this.portalFarMaterial;
                 }

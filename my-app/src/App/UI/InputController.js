@@ -26,7 +26,7 @@ export default class InputController {
     preventScroll(event) {
         const startButton = document.querySelector('.start');
         const modal = document.getElementById("myModal");
-        if (!startButton.contains(event.target) && this.joystickEnabled && !modal.contains(event.target)) {
+        if (startButton && !startButton.contains(event.target) && this.joystickEnabled && modal && !modal.contains(event.target)) {
             event.preventDefault();
         }
     }
@@ -86,8 +86,7 @@ export default class InputController {
 
         this.joystick = nipplejs.create({
             zone: document.body,
-            mode: 'static',
-            position: { left: '20%', bottom: '20%' },
+            mode: 'dynamic',
             color: 'blue',
             size: 100,
         });
@@ -103,6 +102,18 @@ export default class InputController {
             inputStore.setState({ forward: false, backward: false, left: false, right: false });
             this.checkMovementState();
         });
+
+        console.log('Joystick initialized');
+    }
+
+    destroyJoystick() {
+        console.log("IN DESTROY")
+        console.log(this.joystick);
+        if (this.joystick) {
+            this.joystick.destroy();
+            this.joystick = null;
+            console.log('Joystick destroyed');
+        }
     }
 
     disableJoystick() {
@@ -131,14 +142,30 @@ export default class InputController {
 
     updateInputState(data) {
         const angle = data.angle.degree;
-        if (angle >= 45 && angle < 135) {
-            inputStore.setState({ forward: true, backward: false });
-        } else if (angle >= 135 && angle < 225) {
-            inputStore.setState({ left: true, right: false });
-        } else if (angle >= 225 && angle < 315) {
-            inputStore.setState({ backward: true, forward: false });
+        const distance = data.distance;
+        const threshold = 15; // Adjust this value to change sensitivity
+    
+        if (distance > threshold) {
+            // Diagonal and straight movements
+            if (angle >= 22.5 && angle < 67.5) {
+                inputStore.setState({ forward: true, backward: false, left: false, right: true }); // Forward-right
+            } else if (angle >= 67.5 && angle < 112.5) {
+                inputStore.setState({ forward: true, backward: false, left: false, right: false }); // Forward
+            } else if (angle >= 112.5 && angle < 157.5) {
+                inputStore.setState({ forward: true, backward: false, left: true, right: false }); // Forward-left
+            } else if (angle >= 157.5 && angle < 202.5) {
+                inputStore.setState({ forward: false, backward: false, left: true, right: false }); // Left
+            } else if (angle >= 202.5 && angle < 247.5) {
+                inputStore.setState({ forward: false, backward: true, left: true, right: false }); // Backward-left
+            } else if (angle >= 247.5 && angle < 292.5) {
+                inputStore.setState({ forward: false, backward: true, left: false, right: false }); // Backward
+            } else if (angle >= 292.5 && angle < 337.5) {
+                inputStore.setState({ forward: false, backward: true, left: false, right: true }); // Backward-right
+            } else {
+                inputStore.setState({ forward: false, backward: false, left: false, right: true }); // Right
+            }
         } else {
-            inputStore.setState({ right: true, left: false });
+            inputStore.setState({ forward: false, backward: false, left: false, right: false });
         }
     }
 
