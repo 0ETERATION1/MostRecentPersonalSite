@@ -9,6 +9,8 @@ export default class InputController {
         this.joystick = null;
         this.joystickEnabled = true;
         this.inputsEnabled = true;
+        this.runSound = document.getElementById('runSound'); // Add the run sound element
+        this.isMoving = false; // Track if the user is moving
     }
 
     startListening() {
@@ -51,6 +53,7 @@ export default class InputController {
                     break;
             }
             this.keyPressed[event.code] = true;
+            this.checkMovementState();
         }
     }
 
@@ -75,6 +78,7 @@ export default class InputController {
                 break;
         }
         this.keyPressed[event.code] = false;
+        this.checkMovementState();
     }
 
     initJoystick() {
@@ -91,11 +95,13 @@ export default class InputController {
         this.joystick.on('move', (evt, data) => {
             if (!this.inputsEnabled) return;
             this.updateInputState(data);
+            this.checkMovementState();
         });
 
         this.joystick.on('end', () => {
             if (!this.inputsEnabled) return;
             inputStore.setState({ forward: false, backward: false, left: false, right: false });
+            this.checkMovementState();
         });
     }
 
@@ -134,6 +140,20 @@ export default class InputController {
         } else {
             inputStore.setState({ right: true, left: false });
         }
+    }
+
+    checkMovementState() {
+        const state = inputStore.getState();
+        const isMoving = state.forward || state.backward || state.left || state.right;
+
+        if (isMoving && !this.isMoving) {
+            this.runSound.play().catch(error => console.error('Failed to play run sound:', error));
+        } else if (!isMoving && this.isMoving) {
+            this.runSound.pause();
+            this.runSound.currentTime = 0;
+        }
+
+        this.isMoving = isMoving;
     }
 }
 
