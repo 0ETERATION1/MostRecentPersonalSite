@@ -23,10 +23,11 @@ export default class ModalContentProvider {
               description: `
               <p>Here are some of my notable projects:</p>
               <ul class="projects-list no-bullets">
-                  <li><a href="https://www.youtube.com/watch?v=Hqsd523YFlc" target="_blank">Terptune</a> Music Database App - Terptune</li>
-                  <li><a href="https://github.com/0ETERATION1/Q-Learning-with-Gymnasium" target="_blank">Q-Learning with Gymnasium</a>Trained an Agent to Navigate an Environment Using Q-learning</li>
-                  <li><a href="https://github.com/0ETERATION1/Image-Classification-with-PyTorch" target="_blank">PyTorch Image Classifier</a>Built an Image Classification Model Using PyTorch on a Custom Dataset</li>
-                  <li><a href="https://github.com/0ETERATION1/LLM-Text-Generator" target="_blank">LLM Text Generator</a> LLM Summarizer</li>
+                <li><a href="https://www.heisenbergai.us/" target="_blank">Heisenberg.ai</a> AI/ML Powered Drug Treatment Discovery Platform - UMBC Hackathon</li>
+                <li><a href="https://www.youtube.com/watch?v=Hqsd523YFlc" target="_blank">Terptune</a> Music Database App - Terptune</li>
+                <li><a href="https://github.com/0ETERATION1/Q-Learning-with-Gymnasium" target="_blank">Q-Learning with Gymnasium</a>Trained an Agent to Navigate an Environment Using Q-learning</li>
+                <li><a href="https://github.com/0ETERATION1/Image-Classification-with-PyTorch" target="_blank">PyTorch Image Classifier</a>Built an Image Classification Model Using PyTorch on a Custom Dataset</li>
+                <li><a href="https://github.com/0ETERATION1/LLM-Text-Generator" target="_blank">LLM Text Generator</a> LLM Summarizer</li>
               </ul>
               `
           },
