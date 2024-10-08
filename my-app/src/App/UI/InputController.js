@@ -146,7 +146,7 @@ export default class InputController {
         const threshold = 15; // Adjust this value to change sensitivity
     
         if (distance > threshold) {
-            // Diagonal and straight movements
+            // For Diagonal and straight movements
             if (angle >= 22.5 && angle < 67.5) {
                 inputStore.setState({ forward: true, backward: false, left: false, right: true }); // Forward-right
             } else if (angle >= 67.5 && angle < 112.5) {
@@ -184,6 +184,7 @@ export default class InputController {
     }
 }
 
+// this makes it work for mobile
 function isMobileDevice() {
     return /Mobi|Android/i.test(navigator.userAgent);
 }
