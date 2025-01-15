@@ -23,9 +23,9 @@ export default class ModalContentProvider {
               description: `
               <p>Here are some of my notable projects:</p>
               <ul class="projects-list no-bullets">
-                <li><a href="https://www.greenacresdmv.com/" target="_blank">Green Acres DMV Website</a> Built and deployed a modern website for a local landscaping business</li>
+                <li><a href="https://www.greenacresdmv.com/" target="_blank">Green Acres DMV Website</a>A modern website built for a local landscaping business</li>
 
-                <li><a href="https://leetcode-tracker-smoky.vercel.app/" target="_blank">LeetCode Tracker</a> Tracks my progress on LeetCode to keep my accountable</li>
+                <li><a href="https://leetcode-tracker-smoky.vercel.app/" target="_blank">LeetCode Tracker</a> Web application that tracks my progress on LeetCode to keep me accountable</li>
 
                 <li><a href="https://househackers.vercel.app/" target="_blank">house_hackers</a> ZIP Code Analyzer for First Time Home Buyers in Fairfax County - GMU Hackathon</li>
 
