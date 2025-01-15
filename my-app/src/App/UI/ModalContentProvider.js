@@ -5,7 +5,7 @@ export default class ModalContentProvider {
               title: 'About me',
               description: `
               <h3>I'm Alex Terskin</h3>
-              <p>Currently I am a computer science student at the University of Maryland!</p>
+              <p>I am a recent graduate from the University of Maryland with a degree in Computer Science, eager to contribute my skills and knowledge to innovative and impactful projects in the tech industry!</p>
               <p>
               Thank you for taking the time to check out my portfolio. 
               I really hope you enjoy exploring it as much as I enjoyed building it. 
