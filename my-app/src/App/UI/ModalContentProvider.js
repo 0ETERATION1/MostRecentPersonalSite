@@ -25,7 +25,7 @@ export default class ModalContentProvider {
               <ul class="projects-list no-bullets">
                 <li><a href="https://www.greenacresdmv.com/" target="_blank">Green Acres DMV Website</a>A Modern Website Built for a Local Landscaping Business</li>
 
-                <li><a href="https://leetcode-tracker-smoky.vercel.app/" target="_blank">LeetCode Tracker</a> Web application That Tracks my Progress on LeetCode to Keep me Accountable</li>
+                <li><a href="https://leetcode-tracker-smoky.vercel.app/" target="_blank">LeetCode Tracker</a> Web Application That Tracks my Progress on LeetCode to Keep me Accountable</li>
 
                 <li><a href="https://househackers.vercel.app/" target="_blank">house_hackers</a> ZIP Code Analyzer for First Time Home Buyers in Fairfax County - GMU Hackathon</li>
 
