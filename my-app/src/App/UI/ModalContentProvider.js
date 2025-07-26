@@ -23,7 +23,7 @@ export default class ModalContentProvider {
               description: `
               <p>Here are some of my notable projects:</p>
               <ul class="projects-list no-bullets">
-                <li><a href="https://gtownhack.vercel.app/" target="_blank">DC Food Desert Simulator</a>Developed a 3D interactive simulation for DC food deserts - Georgetown Hackathon</a>
+                <li><a href="https://food-desert.vercel.app/" target="_blank">DC Food Desert Simulator</a>Developed a 3D interactive simulation for DC food deserts - Georgetown Hackathon</a>
                 <li><a href="https://www.greenacresdmv.com/" target="_blank">Green Acres DMV Website</a>A Modern Website Built for a Local Landscaping Business</li>
 
                 <li><a href="https://leetcode-tracker-smoky.vercel.app/" target="_blank">LeetCode Tracker</a> Web Application That Tracks my Progress on LeetCode to Keep me Accountable</li>
