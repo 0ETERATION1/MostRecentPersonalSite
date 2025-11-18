@@ -57,7 +57,7 @@ export default class ModalContentProvider {
               <input type ='text' name='Name' placeholder='Name' autocomplete='off' required>
               <input type ='email' name='email' placeholder='Email Address' autocomplete='off' required>
               <textarea rows='5' cols='60' name='message' placeholder='Send a Message!' autocomplete='off' required></textarea>
-              <button type='submit'>Lock in With Me!</button>
+              <button type='submit'>Connect With Me!</button>
           </form>
       `;
 
